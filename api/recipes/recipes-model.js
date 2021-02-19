@@ -12,16 +12,16 @@ function get() {
 
 function getShoppingList(recipe_id) {
     return db('ingredients as ing')
-        .join('instructions as inst', 'ing.id', 'inst.ingredient_id')
-        .select('inst.id as id', 'ing.ingredient as IngredientName', 'ing.quantity as Quantity')
+        .join('instructions as inst', 'ing.ingredient_id', 'inst.ingredient_id')
+        .select('inst.instruction_id as id', 'ing.ingredient_name as IngredientName', 'ing.quantity as Quantity', 'ing.measurement as Measurement')
         .orderBy('inst.step_id')
         .where('inst.recipe_id', recipe_id)
 }
 
 function getInstructions(recipe_id) {
     return db('steps as s')
-        .join('instructions as i', 's.id', 'i.step_id')
-        .select('s.name as StepName')
+        .join('instructions as i', 's.step_id', 'i.step_id')
+        .select('i.step_id as Step','s.step_name as StepName')
         .orderBy('i.step_id')
         .where('i.recipe_id', recipe_id)
 

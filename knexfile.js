@@ -4,11 +4,12 @@ module.exports = {
 
   development: {
     client: 'sqlite3',
-    useNullAsDefault: true,
+    
     connection: {
       filename: './data/recipes.db3'
-    }
-  },
+    },
+    useNullAsDefault: true,
+  
   migrations: {
     directory: './data/migrations'
   },
@@ -20,4 +21,5 @@ module.exports = {
       conn.run("PRAGMA foreign_keys = ON", done)
     }
   }
+ }
 };
